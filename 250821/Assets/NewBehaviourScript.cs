@@ -5,27 +5,36 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     public float speed;
+    public float speedOK = 0;
 
     public void Attack(Slime slime)
     {
         slime.hp -= 1;
+        if(slime.hp <= 95)
+        {
+            speedOK = 1;
+        }
     }
 
     private void Update()
     {
-        float curSpeed = speed;
-
-        if (Input.GetKey(KeyCode.LeftShift))
-            curSpeed *= 3f;
-
+        float Curspeed = speed;
+        if (speedOK == 1)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Curspeed = speed * 2;
+            }
+                
+        }
         if (Input.GetKey(KeyCode.W))
-            transform.position += Vector3.forward * curSpeed;
+            transform.position += Vector3.forward * Curspeed;
         if (Input.GetKey(KeyCode.A))
-            transform.position += Vector3.left * curSpeed;
+            transform.position += Vector3.left * Curspeed;
         if (Input.GetKey(KeyCode.S))
-            transform.position += Vector3.back * curSpeed;
+            transform.position += Vector3.back * Curspeed;
         if (Input.GetKey(KeyCode.D))
-            transform.position += Vector3.right * curSpeed;
+            transform.position += Vector3.right * Curspeed;
     }
 
     private void OnCollisionEnter(Collision collision)
