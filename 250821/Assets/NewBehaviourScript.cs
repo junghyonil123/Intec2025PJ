@@ -13,19 +13,14 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
-        float curSpeed = speed;
-
-        if (Input.GetKey(KeyCode.LeftShift))
-            curSpeed *= 3f;
-
         if (Input.GetKey(KeyCode.W))
-            transform.position += Vector3.forward * curSpeed;
+            transform.position += Vector3.forward * speed;
         if (Input.GetKey(KeyCode.A))
-            transform.position += Vector3.left * curSpeed;
+            transform.position += Vector3.left * speed;
         if (Input.GetKey(KeyCode.S))
-            transform.position += Vector3.back * curSpeed;
+            transform.position += Vector3.back * speed;
         if (Input.GetKey(KeyCode.D))
-            transform.position += Vector3.right * curSpeed;
+            transform.position += Vector3.right * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
