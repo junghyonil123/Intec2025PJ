@@ -7,9 +7,12 @@ public class Player : MonoBehaviour
     public float speed;
     public float speedOK = 0;
 
+    public ParticleSystem slash;
+    public BoxCollider slashRange;
+
     public void Attack(Slime slime)
     {
-        slime.hp -= 1;
+        slime.hp -= 50;
         if(slime.hp <= 95)
         {
             speedOK = 1;
@@ -25,8 +28,14 @@ public class Player : MonoBehaviour
             {
                 Curspeed = speed * 2;
             }
-                
         }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            slash.Play();
+            slashRange.gameObject.SetActive(true);
+        }
+
         if (Input.GetKey(KeyCode.W))
             transform.position += Vector3.forward * Curspeed;
         if (Input.GetKey(KeyCode.A))
@@ -37,11 +46,5 @@ public class Player : MonoBehaviour
             transform.position += Vector3.right * Curspeed;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Monster")
-        {
-            Attack(collision.gameObject.GetComponent<Slime>());
-        }
-    }
+   
 }
