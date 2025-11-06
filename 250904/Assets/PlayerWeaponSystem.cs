@@ -8,7 +8,9 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     public void SpawnDefaultWeapon()
     {
-        GameObject obj = Instantiate(defaultWeapon, Player.Instance.transform.position, Quaternion.identity);
-        obj.transform.parent = transform;
+        GameObject obj = 
+            Instantiate(defaultWeapon
+            , Player.Instance.transform.position
+            , Quaternion.identity);
     }
 }
