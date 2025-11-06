@@ -17,6 +17,9 @@ public class Monster : MonoBehaviour
 
     public void GetDamage(int damage)
     {
+        if (!isAlive)
+            return;
+        
         curHp -= damage;
 
         if (curHp <= 0)
