@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     public int attack = 3;
     public PlayerWeaponSystem playerWeaponSystem;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     public void Initialize()
     {
         playerWeaponSystem.SpawnDefaultWeapon();
+        ApplyEXPWidget();
     }
 
     public void GetEXP()
@@ -31,12 +34,30 @@ public class Player : MonoBehaviour
         if (curEXP >= maxEXP)
         {
             LevelUp();
+            curEXP = 0;
         }
+
+        ApplyEXPWidget();
+    }
+
+    public RectTransform hpBarValue;
+    int hpBarMaxWidth = 932;
+
+    public TextMeshProUGUI levelText;
+
+    void ApplyEXPWidget()
+    {
+        float targetPer = ((float)curEXP / maxEXP) * hpBarMaxWidth;
+        hpBarValue.sizeDelta = new Vector2(targetPer, 0);
+        levelText.text = "Lv" + level;
     }
 
     void LevelUp()
     {
         level += 1;
+        SelectStatusSystem.Instance.Open();
+
+
     }
 
 
