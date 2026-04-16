@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Clear()
+    {
+        Debug.Log("와 클리어!");
+        Respawn();
+    }
+
     public void Update()
     {
         CheckIsPlayerFalling();

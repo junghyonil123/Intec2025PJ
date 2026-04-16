@@ -26,6 +26,7 @@ public class MovingFloor : MonoBehaviour
             dir = Vector3.forward;
     }
 
+
     private void Update()
     {
         Moving();
