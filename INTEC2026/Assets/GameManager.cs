@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     Vector3 spawnPos;
     [SerializeField]
     GameObject player;
+    //[SerializeField]
 
     public void Respawn()
     {
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     {
         if (player.transform.position.y < -5f)
         {
+            //죽음
+            FindObjectOfType<UiManager>().ShowResultPanel(true);
             Respawn();
         }
     }
@@ -32,6 +35,8 @@ public class GameManager : MonoBehaviour
     public void Clear()
     {
         Debug.Log("와 클리어!");
+        FindObjectOfType<UiManager>().ShowResultPanel(false);
+        FindObjectOfType<LevelManager>().MoveToNextLevel();
         Respawn();
     }
 
@@ -39,4 +44,6 @@ public class GameManager : MonoBehaviour
     {
         CheckIsPlayerFalling();
     }
+
+
 }
