@@ -12,9 +12,16 @@ public class Slime : MonoBehaviour
     [SerializeField]
     List<Sprite> forms;
 
+
+    Coroutine slimeMove;
     private void Awake()
     {
-        StartCoroutine(StartMove());
+        slimeMove =  StartCoroutine(StartMove());
+    }
+
+    public void PreparBattle()
+    {
+        StopCoroutine(slimeMove);
     }
 
     IEnumerator StartMove()
@@ -45,21 +52,21 @@ public class Slime : MonoBehaviour
         StartCoroutine(StartMoveLerp(_targetPos));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
 
-        Slime otherSlime;
-        if (otherSlime = collision.gameObject.GetComponent<Slime>())
-        {
-            if (otherSlime.level == level)
-            {
-                Destroy(otherSlime.gameObject);
-                level++;
-                GetComponent<SpriteRenderer>().sprite = forms[level - 1];
-                return;
-            }
-        }
-    }
+    //    Slime otherSlime;
+    //    if (otherSlime = collision.gameObject.GetComponent<Slime>())
+    //    {
+    //        if (otherSlime.level == level)
+    //        {
+    //            Destroy(otherSlime.gameObject);
+    //            level++;
+    //            GetComponent<SpriteRenderer>().sprite = forms[level - 1];
+    //            return;
+    //        }
+    //    }
+    //}
 
 
 }

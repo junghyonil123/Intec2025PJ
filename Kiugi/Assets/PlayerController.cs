@@ -2,6 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerData
+{
+    public List<Slime> ownedSlimes;
+    public int level;
+    public int GetMaxSpawnableSlime()
+    {
+        return level + 5;
+    }
+
+    public PlayerData()
+    {
+        ownedSlimes = new();
+        level = 1;
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Drag Settings")]
@@ -12,12 +28,15 @@ public class PlayerController : MonoBehaviour
     private GameObject draggedObject;
     private Camera mainCamera;
 
+    public static PlayerData playerData;
+
     private Rigidbody2D draggedRb;
     private bool originalKinematic;
 
     void Start()
     {
         mainCamera = Camera.main;
+        playerData = new();
     }
 
     void Update()

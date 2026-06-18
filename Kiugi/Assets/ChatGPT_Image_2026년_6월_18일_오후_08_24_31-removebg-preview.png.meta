@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 968033a371588ed43a1d0f797336728a
+guid: b5d51c7caed9f2b4cbb0b025cf3e2856
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image-removebg-preview_0
+      name: "ChatGPT_Image_2026\uB144_6\uC6D4_18\uC77C_\uC624\uD6C4_08_24_31-removebg-preview_0"
       rect:
         serializedVersion: 2
-        x: 28
-        y: 236
-        width: 316
-        height: 183
+        x: 121
+        y: 180
+        width: 244
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8d8e49f2894f76488e5272234bc9445
-      internalID: -1448076478
+      spriteID: 7db20ded220926f4992337deb06cb762
+      internalID: 1228807095
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      image-removebg-preview_0: -1448076478
+      "ChatGPT_Image_2026\uB144_6\uC6D4_18\uC77C_\uC624\uD6C4_08_24_31-removebg-preview_0": 1228807095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

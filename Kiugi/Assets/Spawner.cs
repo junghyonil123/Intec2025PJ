@@ -7,18 +7,13 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     float colTime = 5f;
 
-    public void Awake()
-    {
-        StartCoroutine(StartSpawn());
-    }
+    int slimeCnt = 0;
 
-    IEnumerator StartSpawn()
+    bool isSpawnable = true;
+    IEnumerator CalculateSpawnable()
     {
-        while (true)
-        {
-            Spawn();
-            yield return new WaitForSecondsRealtime(colTime); //sleep
-        }
+        yield return new WaitForSecondsRealtime(colTime); //sleep
+        isSpawnable = true;
     }
 
     [SerializeField]
@@ -28,12 +23,34 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     GameObject slime1;
 
-    void Spawn()
+    public void TrySpawn()
     {
-        Instantiate(slime1, new Vector3(Random.Range(leftBtm.position.x, rightTop.position.x),
-            Random.Range(leftBtm.position.y, rightTop.position.y), 0f), Quaternion.identity) ; 
+        if (slimeCnt >= PlayerController.playerData.GetMaxSpawnableSlime())
+        {
+            UIManager.instance.StartTextNotify("So many slime!!!!", 3f);
+            return;
+        }
+
+        if (isSpawnable)
+        {
+            GameObject newSlime = Instantiate(slime1, new Vector3(Random.Range(leftBtm.position.x, rightTop.position.x),
+                Random.Range(leftBtm.position.y, rightTop.position.y), 0f), Quaternion.identity);
+            
+            slimeCnt++;
+
+            PlayerController.playerData.ownedSlimes.Add(newSlime.GetComponent<Slime>());
+
+            UIManager.instance.SetSlimeCntText(slimeCnt);
+
+            isSpawnable = false;
+
+            StartCoroutine(CalculateSpawnable());
+            //return true;
+        }
+        else
+        {
+            UIManager.instance.StartTextNotify("Spawn Fail", 3f);
+            //return false;
+        }
     }
-
-
-
 }
