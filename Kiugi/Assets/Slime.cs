@@ -8,6 +8,7 @@ public class Slime : MonoBehaviour
     float moveCol = 5f;
 
     public int level = 1;
+    public int attackDamage = 1;
 
     [SerializeField]
     List<Sprite> forms;
@@ -28,7 +29,8 @@ public class Slime : MonoBehaviour
     {
         while (true)
         {
-            Move();
+            if (isCanMove)
+                Move();
             yield return new WaitForSecondsRealtime(Random.Range(moveCol - 1f, moveCol + 1f)); 
         }
     }
@@ -46,10 +48,19 @@ public class Slime : MonoBehaviour
         }
     }
 
+    public void StopMove()
+    {
+        isCanMove = false;
+        StopCoroutine(moveCoroutine);
+    }
+
+    bool isCanMove = true; 
+    Coroutine moveCoroutine;
+
     void Move()
     {
         Vector3 _targetPos = new(transform.position.x + Random.Range(0.1f, 0.3f), transform.position.y + Random.Range(0.1f, 0.3f));
-        StartCoroutine(StartMoveLerp(_targetPos));
+        moveCoroutine = StartCoroutine(StartMoveLerp(_targetPos));
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)

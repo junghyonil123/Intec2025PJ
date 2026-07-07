@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
         homeCam.gameObject.SetActive(false);
         battleCam.gameObject.SetActive(true);
 
+        BattleManager.instance.InitializeStage();
         BattleManager.instance.SpawnSlime();
+        
     }
 
     public void ReturntoHome()
